@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dimon Connect — Servicios Autónomos</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+    body { background: linear-gradient(135deg, #0f172a, #1e293b); color: white; min-height: 100vh; }
+    .contenedor { max-width: 420px; margin: 0 auto; padding: 2rem 1.5rem; }
+    h1 { font-size: 1.8rem; text-align: center; margin-bottom: 0.5rem; color: #38bdf8; }
+    .subtitulo { text-align: center; color: #94a3b8; margin-bottom: 2rem; }
+    .tarjeta { background: rgba(255,255,255,0.05); border-radius: 16px; padding: 1.5rem; margin-bottom: 1.2rem; border: 1px solid rgba(255,255,255,0.08); }
+    h2 { font-size: 1.1rem; margin-bottom: 0.8rem; color: #e2e8f0; }
+    p { font-size: 0.9rem; line-height: 1.5; color: #cbd5e1; margin-bottom: 0.5rem; }
+    .boton { display: block; width: 100%; padding: 0.9rem; border-radius: 12px; border: none; font-size: 1rem; font-weight: bold; cursor: pointer; margin-top: 1rem; text-align: center; text-decoration: none; }
+    .boton-primario { background: linear-gradient(90deg, #3b82f6, #06b6d4); color: white; }
+    .boton-primario:hover { opacity: 0.95; }
+    .boton-secundario { background: transparent; border: 2px solid #475569; color: #cbd5e1; margin-top: 0.8rem; }
+    .fila-opciones { display: flex; gap: 0.8rem; margin-top: 1rem; }
+    .opcion { flex: 1; padding: 0.8rem; background: rgba(255,255,255,0.04); border-radius: 10px; text-align: center; font-size: 0.85rem; color: #94a3b8; border: 1px solid transparent; }
+    .opcion.activa { border-color: #38bdf8; background: rgba(56,189,248,0.08); color: #38bdf8; }
+    .pie { text-align: center; margin-top: 2rem; font-size: 0.75rem; color: #64748b; }
+  </style>
+</head>
+<body>
+  <div class="contenedor">
+    <h1>✨ Dimon Connect</h1>
+    <p class="subtitulo">Conectamos personas, trabajos y oportunidades</p>
+
+    <div class="tarjeta">
+      <h2>¿Qué es esto?</h2>
+      <p>La plataforma donde mostrás lo que sabés hacer y encontrás quién necesita tu ayuda.</p>
+      <p>✅ Navegar es gratis. Buscar es gratis. Crear tu perfil es gratis.</p>
+      <p>Recién cuando se acuerda un trabajo, se cierra el trato adentro y se liberan los datos.</p>
+    </div>
+
+    <div class="tarjeta">
+      <h2>¿Qué querés hacer?</h2>
+      <div class="fila-opciones">
+        <div class="opcion activa">Buscar servicio</div>
+        <div class="opcion">Ofrecer servicio</div>
+      </div>
+      <a href="#" class="boton boton-primario">Crear mi perfil</a>
+      <a href="#" class="boton boton-secundario">Ya tengo cuenta — Entrar</a>
+    </div>
+
+    <div class="tarjeta">
+      <h2>Tu zona primero</h2>
+      <p>Primero ves lo que hay en tu ciudad. Después podés ampliar a todo el país o al mundo.</p>
+      <p>Los perfiles muestran ciudad y país. Todo se traduce a tu idioma automáticamente.</p>
+    </div>
+
+    <p class="pie">Dimon Connect 2026 — Todos los derechos reservados</p>
+  </div>
+</body>
+</html>
