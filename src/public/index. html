@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dimon Connect</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+        body { background: linear-gradient(135deg, #0f172a, #1e293b); min-height: 100vh; display: flex; align-items: center; justify-content: center; color: white; }
+        .container { text-align: center; padding: 2rem; max-width: 600px; }
+        h1 { font-size: 2.5rem; margin-bottom: 1rem; background: linear-gradient(90deg, #38bdf8, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        p { font-size: 1.1rem; color: #cbd5e1; margin-bottom: 2rem; line-height: 1.6; }
+        .status { background: rgba(56, 189, 248, 0.1); border: 1px solid #38bdf8; padding: 1rem; border-radius: 12px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Dimon Connect ✅</h1>
+        <p>La plataforma para conectar personas, servicios y oportunidades.</p>
+        <div class="status">
+            <strong>Estado:</strong> En línea y funcionando 🟢<br>
+            <small>Versión 1.0 — Idiomas: 14</small>
+        </div>
+    </div>
+</body>
+</html>
