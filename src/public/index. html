@@ -1,26 +1,268 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dimon Connect</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
-        body { background: linear-gradient(135deg, #0f172a, #1e293b); min-height: 100vh; display: flex; align-items: center; justify-content: center; color: white; }
-        .container { text-align: center; padding: 2rem; max-width: 600px; }
-        h1 { font-size: 2.5rem; margin-bottom: 1rem; background: linear-gradient(90deg, #38bdf8, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        p { font-size: 1.1rem; color: #cbd5e1; margin-bottom: 2rem; line-height: 1.6; }
-        .status { background: rgba(56, 189, 248, 0.1); border: 1px solid #38bdf8; padding: 1rem; border-radius: 12px; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dimon Connect</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+  body{
+    min-height:100vh;
+    background: radial-gradient(circle at 50% 0%, #3a5a6e 0%, #2a4050 25%, #1c2f3d 60%, #121e27 100%);
+    color:#d6e6ef;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:30px 20px;
+  }
+
+  /* LOGO DIAMANTE 3D */
+  .logo-wrap{
+    display:flex;flex-direction:column;align-items:center;margin-top:10px;
+    filter: drop-shadow(0 12px 25px rgba(0,0,0,0.5));
+  }
+  .diamond{
+    width:76px;height:76px;
+    background: linear-gradient(135deg, #1a3a4d 0%, #4ab2d6 100%);
+    transform: rotate(45deg);
+    border-radius:14px;
+    display:grid;place-items:center;
+    box-shadow: inset 0 0 0 3px rgba(0,0,0,0.6), 0 6px 20px rgba(0,0,0,0.4);
+    position:relative;
+  }
+  .diamond-inner{
+    width:54px;height:54px;
+    background:#0f222f;
+    border-radius:10px;
+    display:grid;place-items:center;
+    transform: rotate(0deg);
+  }
+  .diamond-core{
+    width:28px;height:28px;
+    background: linear-gradient(135deg, #6dd4f0, #2a8cbf);
+    transform: rotate(45deg);
+    box-shadow: 0 0 18px rgba(100,200,255,0.8);
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  }
+  h1{
+    margin-top:20px;
+    font-size:38px;font-weight:800;letter-spacing:0.5px;
+    text-shadow: 0 2px 0 #0a141c, 0 4px 12px rgba(0,0,0,0.6);
+  }
+  h1 span:first-child{color:#4a90b8}
+  h1 span:last-child{color:#cfe8f5; font-weight:300}
+
+  /* BARRA DE BÚSQUEDA */
+  .search-box{
+    margin-top:28px;
+    width:min(520px,90vw);
+    height:56px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05));
+    border:1px solid rgba(255,255,255,0.2);
+    border-radius:999px;
+    display:flex;align-items:center;
+    padding:0 24px;
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.3), 0 10px 25px rgba(0,0,0,0.4);
+    backdrop-filter: blur(10px);
+  }
+  .search-box input{
+    flex:1;background:transparent;border:none;outline:none;
+    color:#fff;font-size:18px;font-weight:600;
+    margin-left:12px;
+  }
+  .search-box input::placeholder{color:#c5d7e0;font-weight:600}
+
+  /* BOTÓN IDIOMAS */
+  .top-row{
+    width:min(980px,95vw);
+    display:flex;justify-content:flex-start;margin-top:20px;
+  }
+  .pill{
+    background: linear-gradient(180deg, #4a7a94, #2f4d62);
+    border:1px solid rgba(255,255,255,0.2);
+    border-radius:999px;
+    padding:9px 20px;
+    font-size:14px;font-weight:700;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.2);
+    cursor:pointer;transition:.2s;
+    color:#d9ecf5;
+  }
+  .pill:hover{transform:translateY(-2px);filter:brightness(1.2)}
+
+  /* MAPA MUNDIAL */
+  .map-area{
+    position:relative;
+    width:min(980px,95vw);
+    margin-top:5px;
+    height:400px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .world-map{
+    width:100%;height:90%;
+    background: url('https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg') center/contain no-repeat;
+    opacity:0.9;
+    filter: invert(0.85) sepia(1) hue-rotate(165deg) saturate(2.2) brightness(1.15) drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+  }
+  .connections{
+    position:absolute;inset:0;pointer-events:none;
+  }
+
+  /* FILAS DE BOTONES */
+  .btn-grid{
+    display:flex;flex-wrap:wrap;gap:10px;justify-content:center;
+    width:min(980px,95vw);margin-top:10px;
+  }
+  .btn-grid .pill{
+    padding:10px 22px;
+    font-size:13px;
+    min-width:140px;
+    text-align:center;
+  }
+  .right-align{
+    width:min(980px,95vw);
+    display:flex;justify-content:flex-end;margin-top:10px;
+  }
+  .download-btn{
+    background: linear-gradient(180deg, #4bbbd8, #2a8eb0);
+    font-size:12px;padding:8px 18px;
+  }
+
+  /* SECCIONES DE TEXTO */
+  .text-section{
+    text-align:center;max-width:550px;margin-top:40px;line-height:1.6;
+  }
+  .text-section h3{
+    font-size:19px;margin-bottom:12px;
+    color:#a7c5d4;
+  }
+  .text-section h3 span{color:#7ab8d0}
+  .text-section p{
+    font-size:15px;color:#c3d6df;
+  }
+  .how-link{
+    margin-top:20px;
+    font-size:17px;color:#7ab8d0;font-weight:700;
+    cursor:pointer;
+  }
+
+  /* PIE DE PÁGINA */
+  footer{
+    width:100%;margin-top:50px;padding-top:20px;
+    display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;
+    font-size:11px;color:#8aa5b3;gap:15px;
+  }
+  .footer-links a{
+    color:#8aa5b3;text-decoration:none;margin:0 6px;
+  }
+  .footer-links a:hover{color:#fff}
+  .brand{
+    font-size:18px;font-weight:800;color:#c8d9e2;
+  }
+
+  /* RESPONSIVO */
+  @media(max-width:600px){
+    h1{font-size:28px}
+    .map-area{height:240px}
+    .btn-grid .pill{flex:1 1 40%}
+  }
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1>Dimon Connect ✅</h1>
-        <p>La plataforma para conectar personas, servicios y oportunidades.</p>
-        <div class="status">
-            <strong>Estado:</strong> En línea y funcionando 🟢<br>
-            <small>Versión 1.0 — Idiomas: 14</small>
-        </div>
+
+  <!-- LOGO -->
+  <div class="logo-wrap">
+    <div class="diamond">
+      <div class="diamond-inner">
+        <div class="diamond-core"></div>
+      </div>
     </div>
+    <h1><span>Dimon</span> <span>Connect</span></h1>
+  </div>
+
+  <!-- BUSCADOR -->
+  <div class="search-box">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#c9dcea" stroke-width="2">
+      <circle cx="11" cy="11" r="7"/>
+      <path d="M20 20l-3.5-3.5"/>
+    </svg>
+    <input type="text" placeholder="Buscar servicios..." id="searchInput">
+  </div>
+
+  <!-- BOTÓN IDIOMAS -->
+  <div class="top-row">
+    <button class="pill" id="langBtn">Idiomas</button>
+  </div>
+
+  <!-- MAPA CON LÍNEAS DE CONEXIÓN -->
+  <div class="map-area">
+    <div class="world-map"></div>
+    <svg class="connections" viewBox="0 0 1000 400" preserveAspectRatio="none">
+      <path d="M 150 220 Q 350 80 550 200 T 850 160" stroke="#a8e6ff" stroke-width="1.5" fill="none" opacity="0.5" stroke-dasharray="4 6"/>
+      <path d="M 100 260 Q 250 300 400 230" stroke="#a8e6ff" stroke-width="1" fill="none" opacity="0.4"/>
+      <circle cx="150" cy="220" r="4" fill="#fff" opacity="0.9"/>
+      <circle cx="400" cy="230" r="4" fill="#fff" opacity="0.9"/>
+      <circle cx="550" cy="200" r="4" fill="#fff" opacity="0.9"/>
+      <circle cx="700" cy="180" r="4" fill="#fff" opacity="0.9"/>
+      <circle cx="850" cy="160" r="4" fill="#fff" opacity="0.9"/>
+    </svg>
+  </div>
+
+  <!-- PRIMERA FILA DE BOTONES -->
+  <div class="btn-grid">
+    <button class="pill">Brindar mi Servicio</button>
+    <button class="pill">Servicios Ofrecidos</button>
+    <button class="pill">Servicios Solicitados</button>
+    <button class="pill">Contactos</button>
+  </div>
+
+  <!-- SEGUNDA FILA DE BOTONES -->
+  <div class="btn-grid">
+    <button class="pill">Prontos</button>
+    <button class="pill">Proyectos</button>
+    <button class="pill">Agenda</button>
+    <button class="pill">Actividad Reciente</button>
+  </div>
+
+  <!-- BOTÓN DESCARGAR -->
+  <div class="right-align">
+    <button class="pill download-btn">Descargar App</button>
+  </div>
+
+  <!-- SECCIONES INFORMATIVAS -->
+  <div class="text-section">
+    <h3>¿Qué es Dimon <span>Connect</span>?</h3>
+    <p>Plataforma para conectar servicios autónomos<br>de forma rápida, segura y organizada.</p>
+    <div class="how-link">¿Cómo funciona?</div>
+  </div>
+
+  <!-- PIE -->
+  <footer>
+    <div style="display:flex;align-items:center;gap:8px">
+      <span style="font-size:20px">🛡️</span>
+      <div class="footer-links">
+        <a href="#">Normas de Seguridad</a> |
+        <a href="#">Información Legal</a> |
+        <a href="#">Términos y Condiciones</a> |
+        <a href="#">Política de Privacidad</a> |
+        <a href="#">Contacto</a>
+      </div>
+    </div>
+    <div class="brand">Dola AI</div>
+  </footer>
+
+<script>
+  // Buscador
+  document.getElementById('searchInput').addEventListener('input', e => {
+    console.log('Buscando:', e.target.value);
+  });
+
+  // Idiomas
+  document.getElementById('langBtn').addEventListener('click', () => {
+    alert('Selector de idiomas — próximamente disponible');
+  });
+</script>
+
 </body>
 </html>
