@@ -1,20 +1,22 @@
 {
   "name": "dimon-connect",
   "version": "1.0.0",
-  "description": "Plataforma de servicios autónomos — Dimon Connect",
+  "description": "Plataforma Dimon Connect — Conexión entre contratistas y profesionales",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "dev": "node --watch server.js"
   },
+  "author": "José María Mondine Lemos",
+  "license": "MIT",
   "dependencies": {
-    "express": "^4.21.0",
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
+    "express": "^4.21.0",
     "jsonwebtoken": "^9.0.2",
-    "bcryptjs": "^2.4.3",
-    "socket.io": "^4.7.5",
-    "supabase": "^1.191.0"
+    "mongoose": "^8.7.0",
+    "paypal-rest-sdk": "^1.8.1"
   },
   "engines": {
     "node": ">=18.0.0"
